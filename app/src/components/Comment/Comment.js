@@ -23,7 +23,9 @@ export default function Comment({comment}) {
       <div className="comment">
         <CommentHeader user={user} createdAt={createdAt}/>
         <div className="comment__text">
-          <span>{replyingTo && `@${replyingTo} `}</span>
+          <span className="comment__text__reply">
+            {replyingTo && `@${replyingTo} `}
+          </span>
           {content}
         </div>
         <CommentScore score={score}/>

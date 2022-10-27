@@ -12,12 +12,12 @@ function App() {
 
 
   return(
-    <>
+    <div className='container'>
     <UserContext.Provider value={currentUser}>
       <CommentList comments={comments}/>
       <AddComment/>
     </UserContext.Provider>
-    </>
+    </div>
   ) 
 }
 

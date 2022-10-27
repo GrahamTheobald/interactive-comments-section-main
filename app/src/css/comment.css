@@ -17,3 +17,18 @@
     line-height: 1.5;
     grid-area: text;
 }
+
+.comment__text__reply {
+    font-weight: 500;
+    color: var(--ModerateBlue);
+}
+
+@media screen and (min-width: 600px) {
+    .comment {
+        grid-template-columns: repeat(4, auto);
+        grid-template-areas: 
+        "score  header header button"
+        "score text text text";
+    }
+    
+}

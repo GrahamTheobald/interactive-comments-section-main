@@ -15,7 +15,7 @@
 
 .comment__header__you {
     background-color: var(--ModerateBlue);
-    padding: .2rem;
+    padding: .2rem .3rem;
     font-size: .9rem;
     color: var(--White);
 }

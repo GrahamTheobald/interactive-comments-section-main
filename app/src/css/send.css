@@ -1,4 +1,4 @@
-.add-comment__send {
+.add-comment__send.button{
     background-color: var(--ModerateBlue);
     color: var(--White);
     padding: .8rem 1.8rem;

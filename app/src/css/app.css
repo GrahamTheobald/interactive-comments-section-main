@@ -1,6 +1,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700&display=swap');
+@import-normalize;
 @import './comment-list.css';
 @import './comment.css';
+@import './comment-header.css';
+@import './add-comment.css';
+@import './comment-score.css';
+@import './photo.css';
+@import './reply-edit-delete.css';
+@import './reply-list.css';
+@import './send.css';
+@import './button.css';
 
 :root {
     --ModerateBlue: hsl(238, 40%, 52%);
@@ -25,4 +34,16 @@
 body {
     padding: 2rem 1rem;
     background-color: var(--VeryLightGray);
+}
+
+@media screen and (min-width: 600px) {
+    body {
+        display: flex;
+        justify-content: center;
+    }
+
+    .container {
+        max-width: 600px;
+    }
+    
 }

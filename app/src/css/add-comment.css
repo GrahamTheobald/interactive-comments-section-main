@@ -22,7 +22,26 @@
     grid-area: text;
 }
 
+.add-comment__text-area:focus-visible {
+    outline: 1px solid var(--DarkBlue);
+}
+
+.add-comment__text-area:hover {
+    cursor: pointer;
+}
+
 .add-comment__text-area::placeholder {
     color: var(--GrayishBlue)
 }
 
+@media screen and (min-width: 600px) {
+    .add-comment {
+        grid-template-columns: max-content 1fr max-content;
+        grid-template-areas: 
+        "photo text button";
+    }
+    .add-comment__send {
+        align-self: flex-start;
+    }
+    
+}
