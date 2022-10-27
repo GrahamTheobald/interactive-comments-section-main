@@ -1,0 +1,9 @@
+.add-comment__send {
+    background-color: var(--ModerateBlue);
+    color: var(--White);
+    padding: .8rem 1.8rem;
+    border-radius: .5rem;
+    text-transform: uppercase;
+    grid-area: button;
+    justify-self: flex-end;
+}

@@ -1,10 +1,11 @@
 import React from 'react'
+import '../../css/reply-edit-delete.css'
 
 export default function Reply() {
   return (
-    <div>
+    <button className="button button--reply">
       <img src="./images/icon-reply.svg" alt="reply"/>
       Reply
-    </div>
+    </button>
   )
 }

@@ -1,0 +1,11 @@
+.reply-list {
+    display: flex;
+    padding-left: 1rem;
+    border-left: 2px solid var(--LightGray)
+}
+
+.reply-list__replies {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}

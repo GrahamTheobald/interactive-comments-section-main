@@ -1,0 +1,21 @@
+.comment__header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    grid-area: header;
+}
+
+.comment__header__username {
+    font-weight: 500;
+}
+
+.comment__header__time-stamp {
+    color: var(--GrayishBlue);
+}
+
+.comment__header__you {
+    background-color: var(--ModerateBlue);
+    padding: .2rem;
+    font-size: .9rem;
+    color: var(--White);
+}

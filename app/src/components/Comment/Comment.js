@@ -5,22 +5,24 @@ import Reply from './Reply'
 import ReplyList from './ReplyList'
 import EditDelete from './EditDelete'
 import { UserContext } from '../App'
+import '../../css/comment.css'
 
 export default function Comment({comment}) {
   const {
     user,
     content,
-    replies,
+    replies=[],
     score,
     createdAt,
     replyingTo,
   } = comment
   const currentUser = useContext(UserContext)
+  console.log(replies)
   return (
     <>
-      <div>
+      <div className="comment">
         <CommentHeader user={user} createdAt={createdAt}/>
-        <div>
+        <div className="comment__text">
           <span>{replyingTo && `@${replyingTo} `}</span>
           {content}
         </div>
@@ -31,8 +33,7 @@ export default function Comment({comment}) {
           <Reply/>
         }
       </div>
-      {replies && <ReplyList replies={replies}/>}
-      
+      {replies.length != 0 && <ReplyList replies={replies}/>}    
     </>
   )
 }

@@ -1,0 +1,22 @@
+.comment__score {
+    display: flex;
+    gap: .8rem;
+    background-color: var(--VeryLightGray);
+    padding: .8rem;
+    width: fit-content;
+    border-radius: .8rem;
+    grid-area: score;
+}
+
+.comment__score__button {
+    outline: none;
+    border: none;
+    display: flex;
+    align-items: center;
+    background-color: transparent;
+}
+
+.comment__score__number {
+    font-weight: 500;
+    color: var(--ModerateBlue)
+}

@@ -1,0 +1,31 @@
+.edit-delete-container {
+    display: flex;
+    gap: 1rem;
+    grid-area: button
+}
+
+.button {
+    border: none;
+    outline: none;
+    font-size: inherit;
+    font-family: inherit;
+    width: max-content;
+    background-color: transparent;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+}
+
+.button--reply, .button--edit {
+    color: var(--ModerateBlue);
+}
+
+.button--delete {
+    color: var(--SoftRed)
+}
+
+.button--reply {
+    grid-area: button;
+    justify-self: flex-end;
+}

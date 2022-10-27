@@ -1,0 +1,19 @@
+.comment {
+    background-color: var(--White);
+    padding: 1rem;
+    border-radius: .5rem;
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, auto);
+    grid-template-areas: 
+        "header header header"
+        "text text text"
+        "score _ button";
+}
+
+.comment__text {
+    color: var(--GrayishBlue);
+    line-height: 1.5;
+    grid-area: text;
+}

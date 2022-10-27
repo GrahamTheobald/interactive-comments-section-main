@@ -1,8 +1,9 @@
 import React from 'react'
+import '../../css/reply-edit-delete.css'
 
 export default function Delete() {
   return (
-    <button>
+    <button className="button button--delete">
       <img src="./images/icon-delete.svg" alt="delete"/>
       Delete
     </button>

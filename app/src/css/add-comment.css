@@ -1,0 +1,28 @@
+.add-comment {
+    background-color: var(--White);
+    padding: 1rem;
+    border-radius: .5rem;
+    display: grid;
+    gap: 1rem;
+    grid-template-areas: 
+    "text text text"
+    "photo _ button";
+
+}
+
+.add-comment__text-area {
+    border-color: var(--LightGray);
+    border-radius: .5rem;
+    padding: 1rem 2rem;
+    font-size: inherit;
+    font-family: inherit;
+    color: black;
+    resize: none;
+    min-height: 6rem;
+    grid-area: text;
+}
+
+.add-comment__text-area::placeholder {
+    color: var(--GrayishBlue)
+}
+
