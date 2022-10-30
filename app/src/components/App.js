@@ -3,24 +3,38 @@ import data from '../data.json'
 import CommentList from './Comment/CommentList';
 import AddComment from './Add/AddComment';
 import '../css/app.css'
+import { cloneDeep, uniqueid } from 'lodash'
 
 export const UserContext = React.createContext()
 export const CommentContext = React.createContext()
 
 function App() {
-  const {comments} = data
   const {currentUser} = data
+  const [comments, setComments] = useState(data.comments)
+  const [text, setText] = useState('')
 
   const CommentContextValue = {
+    handleAddComment,
     comments
   }
   const UserContextValue = {
     currentUser
   }
-  const [text, setText] = useState('')
 
   function handleTextInput(value) {
     setText(value)
+  }
+
+  function handleAddComment(addedComment, parentComment) {
+    const newComments = cloneDeep(comments)
+    if (parentComment) {
+      const parentIndex = newComments.findIndex(c => c.id = parentComment)
+      newComments[parentIndex].replies.push(addedComment)
+    }
+    else {
+      newComments.push(addedComment)
+    }
+    setComments(newComments)
   }
 
 

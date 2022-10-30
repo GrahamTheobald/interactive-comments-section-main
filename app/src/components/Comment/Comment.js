@@ -45,7 +45,11 @@ export default function Comment({comment, parent=null}) {
         }
       </div>
       { renderReply && 
-          <AddComment parent={parent} handleText={handleTextInput} text={text}/>
+          <AddComment 
+          parent={parent} 
+          handleText={handleTextInput} 
+          text={text} 
+          reply={user.username}/>
       }
       {replies.length != 0 && <ReplyList replies={replies} parent={id}/>}    
     </>

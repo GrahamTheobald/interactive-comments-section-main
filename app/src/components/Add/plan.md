@@ -1,5 +1,9 @@
 # Plan
 
+- Send
+
+  - create comment object
+
 - Comment
   - umbrella state so that data can flow between TextArea and AddComment and Send
     - textState controls TextArea value and pass to send
