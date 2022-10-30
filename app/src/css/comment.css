@@ -2,6 +2,7 @@
     background-color: var(--White);
     padding: 1rem;
     border-radius: .5rem;
+    box-shadow: 0 5px 15px var(--LightGray);
     display: grid;
     gap: 1rem;
     grid-template-columns: repeat(3, 1fr);
