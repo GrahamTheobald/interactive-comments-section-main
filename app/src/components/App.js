@@ -1,4 +1,4 @@
-import React, {useSate, useEffect} from 'react'
+import React, {useState, useEffect} from 'react'
 import data from '../data.json'
 import CommentList from './Comment/CommentList';
 import AddComment from './Add/AddComment';
@@ -17,6 +17,11 @@ function App() {
   const UserContextValue = {
     currentUser
   }
+  const [text, setText] = useState('')
+
+  function handleTextInput(value) {
+    setText(value)
+  }
 
 
   return(
@@ -24,7 +29,7 @@ function App() {
     <UserContext.Provider value={UserContextValue}>
     <div className='container'>
       <CommentList comments={comments}/>
-      <AddComment/>
+      <AddComment handleText={handleTextInput} text={text}/>
     </div>
     </UserContext.Provider>
     </CommentContext.Provider>

@@ -1,14 +1,16 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import CommentHeader from './CommentHeader'
 import CommentScore from './CommentScore'
+import AddComment from '../Add/AddComment'
 import Reply from './Reply'
 import ReplyList from './ReplyList'
 import EditDelete from './EditDelete'
-import { UserContext, CommentCon } from '../App'
+import { UserContext } from '../App'
 import '../../css/comment.css'
 
-export default function Comment({comment, parents=[]}) {
+export default function Comment({comment, parent=null}) {
   const {
+    id,
     user,
     content,
     replies=[],
@@ -16,11 +18,14 @@ export default function Comment({comment, parents=[]}) {
     createdAt,
     replyingTo,
   } = comment
+  const [renderReply, setRenderReply] = useState()
   const {currentUser} = useContext(UserContext)
-  function parentTree(parents) {
-    if (parents[0]) {
-
-    }
+  const [text, setText] = useState('')
+  function handleTextInput(value) {
+    setText(value)
+  }
+  function handleReply() {
+    setRenderReply(!renderReply)
   }
   return (
     <>
@@ -36,10 +41,13 @@ export default function Comment({comment, parents=[]}) {
         {
           currentUser.username === user.username ?
           <EditDelete/> :
-          <Reply/>
+          <Reply handle={handleReply}/>
         }
       </div>
-      {replies.length != 0 && <ReplyList replies={replies} parents={parents}/>}    
+      { renderReply && 
+          <AddComment parent={parent} handleText={handleTextInput} text={text}/>
+      }
+      {replies.length != 0 && <ReplyList replies={replies} parent={id}/>}    
     </>
   )
 }
