@@ -1,11 +1,11 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import CommentHeader from './CommentHeader'
 import CommentScore from './CommentScore'
 import AddComment from '../Add/AddComment'
 import Reply from './Reply'
 import ReplyList from './ReplyList'
 import EditDelete from './EditDelete'
-import { UserContext } from '../App'
+import { CommentContext, UserContext } from '../App'
 import '../../css/comment.css'
 
 export default function Comment({comment, parent=null}) {
@@ -20,6 +20,7 @@ export default function Comment({comment, parent=null}) {
   } = comment
   const [renderReply, setRenderReply] = useState()
   const {currentUser} = useContext(UserContext)
+  const {comments} = useContext(CommentContext)
   const [text, setText] = useState('')
   function handleTextInput(value) {
     setText(value)
@@ -27,6 +28,11 @@ export default function Comment({comment, parent=null}) {
   function handleReply() {
     setRenderReply(!renderReply)
   }
+  useEffect(() => {
+    setText('')
+    setRenderReply(false)
+  }, [comments])
+  
   return (
     <>
       <div className="comment">
@@ -46,7 +52,7 @@ export default function Comment({comment, parent=null}) {
       </div>
       { renderReply && 
           <AddComment 
-          parent={parent} 
+          parent={parent ? parent : id} 
           handleText={handleTextInput} 
           text={text} 
           reply={user.username}/>

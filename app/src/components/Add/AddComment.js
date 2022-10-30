@@ -13,6 +13,7 @@ export default function AddComment(props) {
     reply=false
   } = props
   const {currentUser} = useContext(UserContext)
+  console.log(parent)
   
   return (
     <div className="add-comment">

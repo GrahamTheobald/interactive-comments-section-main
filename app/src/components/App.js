@@ -28,7 +28,7 @@ function App() {
   function handleAddComment(addedComment, parentComment) {
     const newComments = cloneDeep(comments)
     if (parentComment) {
-      const parentIndex = newComments.findIndex(c => c.id = parentComment)
+      const parentIndex = newComments.findIndex(c => c.id === parentComment)
       newComments[parentIndex].replies.push(addedComment)
     }
     else {
