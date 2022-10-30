@@ -4,10 +4,10 @@ import CommentScore from './CommentScore'
 import Reply from './Reply'
 import ReplyList from './ReplyList'
 import EditDelete from './EditDelete'
-import { UserContext } from '../App'
+import { UserContext, CommentCon } from '../App'
 import '../../css/comment.css'
 
-export default function Comment({comment}) {
+export default function Comment({comment, parents=[]}) {
   const {
     user,
     content,
@@ -16,8 +16,12 @@ export default function Comment({comment}) {
     createdAt,
     replyingTo,
   } = comment
-  const currentUser = useContext(UserContext)
-  console.log(replies)
+  const {currentUser} = useContext(UserContext)
+  function parentTree(parents) {
+    if (parents[0]) {
+
+    }
+  }
   return (
     <>
       <div className="comment">
@@ -35,7 +39,7 @@ export default function Comment({comment}) {
           <Reply/>
         }
       </div>
-      {replies.length != 0 && <ReplyList replies={replies}/>}    
+      {replies.length != 0 && <ReplyList replies={replies} parents={parents}/>}    
     </>
   )
 }

@@ -6,11 +6,11 @@ import Photo from '../Photo'
 import '../../css/add-comment.css'
 
 export default function AddComment() {
-  const user = useContext(UserContext)
+  const {currentUser} = useContext(UserContext)
   return (
     <div className="add-comment">
       <TextArea/>
-      <Photo src={user.image.png}/>
+      <Photo src={currentUser.image.png}/>
       <Send/>
     </div>
   )

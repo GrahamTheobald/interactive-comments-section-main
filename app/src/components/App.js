@@ -5,19 +5,29 @@ import AddComment from './Add/AddComment';
 import '../css/app.css'
 
 export const UserContext = React.createContext()
+export const CommentContext = React.createContext()
 
 function App() {
   const {comments} = data
   const {currentUser} = data
 
+  const CommentContextValue = {
+    comments
+  }
+  const UserContextValue = {
+    currentUser
+  }
+
 
   return(
+    <CommentContext.Provider value={CommentContextValue}>
+    <UserContext.Provider value={UserContextValue}>
     <div className='container'>
-    <UserContext.Provider value={currentUser}>
       <CommentList comments={comments}/>
       <AddComment/>
-    </UserContext.Provider>
     </div>
+    </UserContext.Provider>
+    </CommentContext.Provider>
   ) 
 }
 

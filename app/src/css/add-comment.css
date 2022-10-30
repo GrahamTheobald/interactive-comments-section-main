@@ -1,6 +1,7 @@
 .add-comment {
     background-color: var(--White);
     padding: 1rem;
+    margin-top: -.5rem;
     border-radius: .5rem;
     display: grid;
     gap: 1rem;

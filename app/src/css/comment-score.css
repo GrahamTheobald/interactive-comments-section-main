@@ -4,6 +4,7 @@
     background-color: var(--VeryLightGray);
     padding: .8rem;
     width: fit-content;
+    min-width: 3rem;
     border-radius: .8rem;
     grid-area: score;
 }

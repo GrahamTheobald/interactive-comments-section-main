@@ -9,7 +9,7 @@ export default function CommentHeader({user, createdAt}) {
     username,
   } = user
 
-  const currentUser = useContext(UserContext)
+  const {currentUser} = useContext(UserContext)
 
   return (
     <div className="comment__header">
