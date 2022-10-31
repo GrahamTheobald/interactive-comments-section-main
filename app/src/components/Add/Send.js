@@ -15,6 +15,8 @@ export default function Send({parent, reply, text, label}) {
     "score": 0,
     "user": currentUser,
     "replies": [],
+    "likes": [],
+    "dislikes": [],
     "replyingTo": reply
   }
   return (

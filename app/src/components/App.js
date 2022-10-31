@@ -3,20 +3,21 @@ import data from '../data.json'
 import CommentList from './Comment/CommentList';
 import AddComment from './Add/AddComment';
 import '../css/app.css'
-import { cloneDeep } from 'lodash'
+import { cloneDeep, set } from 'lodash'
 
 export const UserContext = React.createContext()
 export const HandlerContext = React.createContext()
 
 function App() {
-  const {currentUser} = data
   const [comments, setComments] = useState(data.comments)
+  const [currentUser, setCurrentUser] = useState(data.currentUser)
   const [text, setText] = useState('')
 
   const HandlerContextValue = {
     handleAddComment,
     handleEditComment,
     handleDeleteComment,
+    handleScore,
     comments
   }
   const UserContextValue = {
@@ -27,6 +28,40 @@ function App() {
     setText('')
   }, [comments]) 
 
+  function handleScore(score, parentId, commentID) {
+    const newComments = cloneDeep(comments)
+    const newUser = cloneDeep(currentUser)
+    let newComment
+    if (parentId) {
+      const parentIndex = newComments.findIndex(c => c.id == parentId)
+      newComment = newComments[parentIndex].replies.find(c => c.id == commentID)
+    }
+    else {
+      newComment = newComments.find(c => c.id == commentID)
+    }
+
+    const key = score === 1 ? 'likes' : 'dislikes'
+    const otherKey = score === 1 ? 'dislikes' : 'likes'
+
+    if (newUser[key].includes(commentID)) {
+      score = -score
+      newComment.score += score
+      newUser[key] = newUser[key].filter(l => l !== commentID)
+    }
+    else if (newUser[otherKey].includes(commentID)) {
+      score *= 2
+      newComment.score += score
+      newUser[otherKey] = newUser[otherKey].filter(l => l !== commentID)
+      newUser[key].push(commentID)
+    }
+    else {
+      newComment.score += score
+      newUser[key].push(commentID)
+    }
+
+    setComments(newComments)
+    setCurrentUser(newUser)
+  }
   function handleTextInput(value) {
     setText(value)
   }
@@ -35,7 +70,6 @@ function App() {
     if (parentComment) {
       const parentIndex = newComments.findIndex(c => c.id === parentComment)
       newComments[parentIndex].replies = newComments[parentIndex].replies.filter(c => c.id !== commentID)
-
     }
     else {
       newComments = newComments.filter(c => c.id !== commentID)
