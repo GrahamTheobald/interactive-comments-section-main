@@ -8,7 +8,6 @@ export default function CommentHeader({user, createdAt}) {
     image: {png},
     username,
   } = user
-
   const {currentUser} = useContext(UserContext)
 
   return (

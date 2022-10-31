@@ -7,7 +7,7 @@ import '../../css/add-comment.css'
 
 export default function AddComment(props) {
   const {
-    parent=null,
+    parent,
     handleText,
     text,
     reply=false

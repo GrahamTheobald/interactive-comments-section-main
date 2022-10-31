@@ -1,10 +1,16 @@
-import React from 'react'
+import React, {useContext} from 'react'
+import { CommentContext } from './Comment'
 import '../../css/modal.css'
 
-export default function Modal({cancel}) {
+export default function Modal(props) {
+  const {
+    del,
+    cancel,
+  } = props
+  const { parent, id} = useContext(CommentContext)
+
   return (
     <>
-      
       <div className="modal">
         <div className="modal__title">
           Delete Comment
@@ -20,13 +26,12 @@ export default function Modal({cancel}) {
               No, Cancel
           </button>
           <button
+            onClick={() => del(parent, id)}
             className="button button--modal button--cancel">
               Yes, Delete
           </button>
         </div>
       </div>
     </>
-
-
   )
 }

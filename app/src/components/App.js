@@ -6,14 +6,14 @@ import '../css/app.css'
 import { cloneDeep } from 'lodash'
 
 export const UserContext = React.createContext()
-export const CommentContext = React.createContext()
+export const HandlerContext = React.createContext()
 
 function App() {
   const {currentUser} = data
   const [comments, setComments] = useState(data.comments)
   const [text, setText] = useState('')
 
-  const CommentContextValue = {
+  const HandlerContextValue = {
     handleAddComment,
     handleEditComment,
     handleDeleteComment,
@@ -30,11 +30,18 @@ function App() {
   function handleTextInput(value) {
     setText(value)
   }
-
   function handleDeleteComment(parentComment, commentID) {
-    return null 
-  }
+    let newComments = cloneDeep(comments) 
+    if (parentComment) {
+      const parentIndex = newComments.findIndex(c => c.id === parentComment)
+      newComments[parentIndex].replies = newComments[parentIndex].replies.filter(c => c.id !== commentID)
 
+    }
+    else {
+      newComments = newComments.filter(c => c.id !== commentID)
+    }
+    setComments(newComments)
+  }
   function handleEditComment(text, parentComment, commentID) {
     const newComments = cloneDeep(comments)
     if (parentComment) {
@@ -48,7 +55,6 @@ function App() {
     }
     setComments(newComments)
   }
-
   function handleAddComment(addedComment, parentComment) {
     const newComments = cloneDeep(comments)
     if (parentComment) {
@@ -61,16 +67,15 @@ function App() {
     setComments(newComments)
   }
 
-
   return(
-    <CommentContext.Provider value={CommentContextValue}>
+    <HandlerContext.Provider value={HandlerContextValue}>
     <UserContext.Provider value={UserContextValue}>
     <div className='container'>
       <CommentList comments={comments}/>
       <AddComment handleText={handleTextInput} text={text}/>
     </div>
     </UserContext.Provider>
-    </CommentContext.Provider>
+    </HandlerContext.Provider>
   ) 
 }
 

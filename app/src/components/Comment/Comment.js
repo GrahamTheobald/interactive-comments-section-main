@@ -8,8 +8,10 @@ import Update from './Update'
 import ReplyList from './ReplyList'
 import EditDelete from './EditDelete'
 import Modal from './Modal'
-import { CommentContext, UserContext } from '../App'
+import { HandlerContext, UserContext } from '../App'
 import '../../css/comment.css'
+
+export const CommentContext = React.createContext()
 
 export default function Comment({comment, parent=null}) {
   const {
@@ -21,14 +23,20 @@ export default function Comment({comment, parent=null}) {
     createdAt,
     replyingTo,
   } = comment
+  const CommentContextValue = {
+    id,
+    parent,
+  }
   const {currentUser} = useContext(UserContext)
-  const {comments} = useContext(CommentContext)
+  const {comments, handleDeleteComment} = useContext(HandlerContext)
+
   const [renderReply, setRenderReply] = useState(false)
   const [renderEdit, setRenderEdit] = useState(false)
   const [renderModal, setRenderModal] = useState(false)
   const [text, setText] = useState('')
   const [editText, setEditText] = 
     useState(replyingTo ? `@${replyingTo} ${content}` : `${content}`)
+
   function handleTextInput(value) {
     setText(value)
   }
@@ -44,28 +52,27 @@ export default function Comment({comment, parent=null}) {
   function handleEditInput(value) {
     setEditText(value)
   }
+
   useEffect(() => {
     setText('')
+    setEditText(replyingTo ? `@${replyingTo} ${content}` : `${content}`)
     setRenderReply(false)
     setRenderEdit(false)
-  }, [comments])
+  }, [comments, content, replyingTo])
   
   return (
+    <CommentContext.Provider value={CommentContextValue}>
     <>
       {renderModal && <div className='modal__container'/>}
       <div className="comment">
-        {renderModal && <Modal cancel={handleDelete}/>}
+        {renderModal && <Modal cancel={handleDelete} del={handleDeleteComment}/>}
         <CommentHeader user={user} createdAt={createdAt}/>
         { renderEdit ? 
           <div className="comment__edit">
             <TextArea 
-            text={editText}
-            handleText={handleEditInput}/>
-            <Update 
-            label={'Update'} 
-            text={editText} 
-            id={id}
-            parent={parent}
+              text={editText}
+              handleText={handleEditInput}/>
+            <Update text={editText} 
             />
           </div> 
           :
@@ -85,12 +92,15 @@ export default function Comment({comment, parent=null}) {
       </div>
       { renderReply && 
           <AddComment 
-          parent={parent ? parent : id} 
-          handleText={handleTextInput} 
-          text={text} 
-          reply={user.username}/>
+            parent={parent ? parent : id} 
+            handleText={handleTextInput} 
+            text={text} 
+            reply={user.username}
+          />
       }
       {replies.length !== 0 && <ReplyList replies={replies} parent={id}/>}    
     </>
+    </CommentContext.Provider>
+
   )
 }
