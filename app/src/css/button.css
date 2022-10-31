@@ -29,9 +29,10 @@
 .button--modal {
     background-color: var(--GrayishBlue);
     color: var(--White);
-    padding: .8rem 1.8rem;
+    padding: .8rem 1.5rem;
     border-radius: .5rem;
     text-transform: uppercase;
+    white-space: nowrap;
 }
 
 .button--cancel {

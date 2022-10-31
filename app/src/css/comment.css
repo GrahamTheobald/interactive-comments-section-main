@@ -1,4 +1,5 @@
 .comment {
+    position: relative;
     background-color: var(--White);
     padding: 1rem;
     border-radius: .5rem;

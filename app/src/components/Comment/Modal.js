@@ -1,9 +1,10 @@
 import React from 'react'
 import '../../css/modal.css'
 
-export default function Modal() {
+export default function Modal({cancel}) {
   return (
-    <div className="modal__container">
+    <>
+      
       <div className="modal">
         <div className="modal__title">
           Delete Comment
@@ -14,6 +15,7 @@ export default function Modal() {
         </div>
         <div className="modal__buttons-container">
           <button 
+            onClick={() => cancel()}
             className="button button--modal">
               No, Cancel
           </button>
@@ -23,8 +25,8 @@ export default function Modal() {
           </button>
         </div>
       </div>
+    </>
 
 
-    </div>
   )
 }

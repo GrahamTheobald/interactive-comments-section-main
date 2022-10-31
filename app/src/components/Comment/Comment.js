@@ -38,6 +38,9 @@ export default function Comment({comment, parent=null}) {
   function handleEdit() {
     setRenderEdit(!renderEdit)
   }
+  function handleDelete() {
+    setRenderModal(!renderModal)
+  }
   function handleEditInput(value) {
     setEditText(value)
   }
@@ -49,8 +52,9 @@ export default function Comment({comment, parent=null}) {
   
   return (
     <>
-      {comment.id === 1 && <Modal/>}
+      {renderModal && <div className='modal__container'/>}
       <div className="comment">
+        {renderModal && <Modal cancel={handleDelete}/>}
         <CommentHeader user={user} createdAt={createdAt}/>
         { renderEdit ? 
           <div className="comment__edit">
@@ -75,7 +79,7 @@ export default function Comment({comment, parent=null}) {
         <CommentScore score={score}/>
         {
           currentUser.username === user.username ?
-          <EditDelete edit={handleEdit}/> :
+          <EditDelete edit={handleEdit} del={handleDelete}/> :
           <Reply handle={handleReply}/>
         }
       </div>
