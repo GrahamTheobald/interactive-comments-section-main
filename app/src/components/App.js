@@ -16,14 +16,23 @@ function App() {
   const CommentContextValue = {
     handleAddComment,
     handleEditComment,
+    handleDeleteComment,
     comments
   }
   const UserContextValue = {
     currentUser
   }
 
+  useEffect(() => {
+    setText('')
+  }, [comments]) 
+
   function handleTextInput(value) {
     setText(value)
+  }
+
+  function handleDeleteComment(parentComment, commentID) {
+    return null 
   }
 
   function handleEditComment(text, parentComment, commentID) {
@@ -34,7 +43,7 @@ function App() {
       editComment.content = text
     }
     else {
-      const editComment = comments.find(c => c.id === commentID)
+      const editComment = newComments.find(c => c.id === commentID)
       editComment.content = text
     }
     setComments(newComments)

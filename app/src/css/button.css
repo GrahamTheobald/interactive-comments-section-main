@@ -26,6 +26,18 @@
     color: var(--SoftRed)
 }
 
+.button--modal {
+    background-color: var(--GrayishBlue);
+    color: var(--White);
+    padding: .8rem 1.8rem;
+    border-radius: .5rem;
+    text-transform: uppercase;
+}
+
+.button--cancel {
+    background-color: var(--SoftRed)
+}
+
 .button--reply {
     grid-area: button;
     justify-self: flex-end;

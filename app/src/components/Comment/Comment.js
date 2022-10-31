@@ -7,6 +7,7 @@ import TextArea from '../Add/TextArea'
 import Update from './Update'
 import ReplyList from './ReplyList'
 import EditDelete from './EditDelete'
+import Modal from './Modal'
 import { CommentContext, UserContext } from '../App'
 import '../../css/comment.css'
 
@@ -24,6 +25,7 @@ export default function Comment({comment, parent=null}) {
   const {comments} = useContext(CommentContext)
   const [renderReply, setRenderReply] = useState(false)
   const [renderEdit, setRenderEdit] = useState(false)
+  const [renderModal, setRenderModal] = useState(false)
   const [text, setText] = useState('')
   const [editText, setEditText] = 
     useState(replyingTo ? `@${replyingTo} ${content}` : `${content}`)
@@ -47,6 +49,7 @@ export default function Comment({comment, parent=null}) {
   
   return (
     <>
+      {comment.id === 1 && <Modal/>}
       <div className="comment">
         <CommentHeader user={user} createdAt={createdAt}/>
         { renderEdit ? 
