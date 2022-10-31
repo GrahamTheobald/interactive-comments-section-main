@@ -13,7 +13,6 @@ export default function AddComment(props) {
     reply=false
   } = props
   const {currentUser} = useContext(UserContext)
-  console.log(parent)
   
   return (
     <div className="add-comment">
@@ -22,7 +21,8 @@ export default function AddComment(props) {
       <Send 
       parent={parent}
       text={text}
-      reply={reply}/>
+      reply={reply}
+      label={reply ? 'Reply' : 'Send'}/>
     </div>
   )
 }

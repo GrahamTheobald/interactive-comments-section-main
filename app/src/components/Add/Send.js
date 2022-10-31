@@ -3,7 +3,8 @@ import '../../css/send.css'
 import { CommentContext, UserContext } from '../App'
 import { v4 as uuidv4} from 'uuid'
 
-export default function Send({reply, parent, text}) {
+export default function Send({reply, parent, text, label}) {
+
   const { handleAddComment } = useContext(CommentContext)
   const { currentUser } = useContext(UserContext)
   const comment = {
@@ -20,7 +21,7 @@ export default function Send({reply, parent, text}) {
     onClick={() => handleAddComment(comment, parent)}
     className="add-comment__send button"
     >
-    { reply ? 'Reply' : 'Send'}
+    {label}
     </button>
   )
 }

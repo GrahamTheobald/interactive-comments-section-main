@@ -3,7 +3,7 @@ import data from '../data.json'
 import CommentList from './Comment/CommentList';
 import AddComment from './Add/AddComment';
 import '../css/app.css'
-import { cloneDeep, uniqueid } from 'lodash'
+import { cloneDeep } from 'lodash'
 
 export const UserContext = React.createContext()
 export const CommentContext = React.createContext()
@@ -15,6 +15,7 @@ function App() {
 
   const CommentContextValue = {
     handleAddComment,
+    handleEditComment,
     comments
   }
   const UserContextValue = {
@@ -23,6 +24,20 @@ function App() {
 
   function handleTextInput(value) {
     setText(value)
+  }
+
+  function handleEditComment(text, parentComment, commentID) {
+    const newComments = cloneDeep(comments)
+    if (parentComment) {
+      const parentIndex = newComments.findIndex(c => c.id === parentComment)
+      const editComment = newComments[parentIndex].replies.find(c => c.id === commentID)
+      editComment.content = text
+    }
+    else {
+      const editComment = comments.find(c => c.id === commentID)
+      editComment.content = text
+    }
+    setComments(newComments)
   }
 
   function handleAddComment(addedComment, parentComment) {

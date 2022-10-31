@@ -3,11 +3,11 @@ import Edit from './Edit'
 import Delete from './Delete'
 import '../../css/reply-edit-delete.css'
 
-export default function EditDelete() {
+export default function EditDelete({edit}) {
   return (
     <div className="edit-delete-container">
       <Delete/>
-      <Edit/>
+      <Edit handle={edit}/>
     </div>
   )
 }
