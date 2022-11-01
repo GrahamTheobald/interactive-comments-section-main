@@ -7,11 +7,17 @@ import { cloneDeep } from 'lodash'
 
 export const UserContext = React.createContext()
 export const HandlerContext = React.createContext()
+const LOCAL_STORAGE_KEY = 'interactiveCommentsSection.comments'
 
 function App() {
   const [comments, setComments] = useState(data.comments)
   const [currentUser, setCurrentUser] = useState(data.currentUser)
   const [text, setText] = useState('')
+
+  useEffect(() => {
+    const commentJSON = localStorage.getItem(LOCAL_STORAGE_KEY)
+    if (commentJSON != null) setComments(JSON.parse(commentJSON))
+  }, [])
 
   const HandlerContextValue = {
     handleAddComment,
@@ -25,7 +31,9 @@ function App() {
   }
 
   useEffect(() => {
+    console.log('toad', comments)
     setText('')
+    localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(comments))
   }, [comments]) 
 
   function handleScore(score, parentId, commentID) {
