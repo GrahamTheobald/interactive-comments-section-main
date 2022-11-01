@@ -9,8 +9,7 @@ export default function ReplyList({replies, parent}) {
       <div className="reply-list__replies">
       {
         replies.map(reply => {
-          reply.parent = parent
-          return <Comment key={reply.id} comment={reply} parent={parent}/>
+          return <Comment key={reply.id} comment={reply} parentIndex={parent}/>
         })
       }
       </div>

@@ -3,7 +3,7 @@ import data from '../data.json'
 import CommentList from './Comment/CommentList';
 import AddComment from './Add/AddComment';
 import '../css/app.css'
-import { cloneDeep, set } from 'lodash'
+import { cloneDeep } from 'lodash'
 
 export const UserContext = React.createContext()
 export const HandlerContext = React.createContext()
@@ -33,11 +33,11 @@ function App() {
     const newUser = cloneDeep(currentUser)
     let newComment
     if (parentId) {
-      const parentIndex = newComments.findIndex(c => c.id == parentId)
-      newComment = newComments[parentIndex].replies.find(c => c.id == commentID)
+      const parentIndex = newComments.findIndex(c => c.id === parentId)
+      newComment = newComments[parentIndex].replies.find(c => c.id === commentID)
     }
     else {
-      newComment = newComments.find(c => c.id == commentID)
+      newComment = newComments.find(c => c.id === commentID)
     }
 
     const key = score === 1 ? 'likes' : 'dislikes'

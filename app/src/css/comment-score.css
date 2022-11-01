@@ -23,6 +23,10 @@
     cursor: pointer;
 }
 
+.comment__score__button img.liked {
+    filter: brightness(0) saturate(100%) invert(33%) sepia(10%) saturate(4849%) hue-rotate(204deg) brightness(99%) contrast(87%);
+}
+
 .comment__score__number {
     font-weight: 500;
     color: var(--ModerateBlue)

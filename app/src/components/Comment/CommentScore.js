@@ -3,7 +3,9 @@ import { CommentContext } from './Comment'
 import { HandlerContext, UserContext} from '../App'
 import '../../css/comment-score.css'
 
+
 export default function CommentScore({score}) {
+
   const {parent, id} = useContext(CommentContext)
   const {handleScore} = useContext(HandlerContext)
   const {currentUser} = useContext(UserContext)
